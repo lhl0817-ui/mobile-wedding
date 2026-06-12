@@ -549,15 +549,8 @@ section h2 {
 
     font-size: 16px;
 }
-p {
-    word-break: keep-all;
-    overflow-wrap: normal;
-}
-section {
-    padding-left: 20px;
-    padding-right: 20px;
-}
-p {
-    font-size: 19px;
-    line-height: 1.9;
+.invitation p {
+    font-size: 20px;
+    line-height: 2.0;
+    text-align: center;
 }
