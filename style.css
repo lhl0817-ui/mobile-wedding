@@ -553,3 +553,7 @@ p {
     word-break: keep-all;
     overflow-wrap: normal;
 }
+section {
+    padding-left: 20px;
+    padding-right: 20px;
+}
