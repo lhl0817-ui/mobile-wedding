@@ -6,7 +6,7 @@
 
 body {
     font-family: "맑은 고딕", sans-serif;
-    font-size: 20px;
+    font-size: 18px;
 line-height: 1.8;
 }
 
@@ -453,15 +453,4 @@ section h2 {
 .person-account p:nth-child(2) {
 
     font-weight: 600;
-}
-section h2 {
-    font-size: 42px !important;
-}
-
-section p {
-    font-size: 22px !important;
-}
-
-button {
-    font-size: 20px !important;
 }
