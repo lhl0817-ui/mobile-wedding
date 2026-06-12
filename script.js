@@ -221,3 +221,33 @@ setInterval(
     updateCountdown,
     1000
 );
+const bgm =
+document.getElementById("bgm");
+
+const musicBtn =
+document.getElementById("musicBtn");
+
+let isPlaying = false;
+
+musicBtn.addEventListener("click", () => {
+
+    if(!isPlaying){
+
+        bgm.play();
+
+        musicBtn.textContent =
+        "🔇 음악 끄기";
+
+        isPlaying = true;
+
+    }else{
+
+        bgm.pause();
+
+        musicBtn.textContent =
+        "🎵 음악 켜기";
+
+        isPlaying = false;
+    }
+
+});
