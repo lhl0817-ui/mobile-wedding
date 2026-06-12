@@ -6,6 +6,8 @@
 
 body {
     font-family: "맑은 고딕", sans-serif;
+    font-size: 18px;
+line-height: 1.8;
 }
 
 .hero {
@@ -429,4 +431,26 @@ body {
     margin-top: 40px;
 
     line-height: 2;
+}
+section h2 {
+
+    font-size: 32px;
+
+    margin-bottom: 30px;
+
+    font-weight: 600;
+}
+.invitation p,
+.hall-address,
+.transport-info {
+
+    font-size: 18px;
+}
+.person-account {
+
+    font-size: 17px;
+}
+.person-account p:nth-child(2) {
+
+    font-weight: 600;
 }
