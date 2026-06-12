@@ -490,14 +490,10 @@ section h2 {
 }
 
 .countdown-container {
-
     display: flex;
-
     justify-content: center;
-
-    gap: 12px;
-
-    flex-wrap: wrap;
+    gap: 10px;
+    flex-wrap: nowrap; /* 핵심 */
 }
 .time-box {
 
@@ -552,12 +548,4 @@ section h2 {
     cursor: pointer;
 
     font-size: 16px;
-}
-section p {
-    word-break: keep-all;
-    line-height: 1.8;
-}
-section {
-    padding-left: 25px;
-    padding-right: 25px;
 }
