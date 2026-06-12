@@ -553,3 +553,7 @@ section h2 {
 
     font-size: 16px;
 }
+section p {
+    word-break: keep-all;
+    line-height: 1.8;
+}
