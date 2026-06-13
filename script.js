@@ -307,28 +307,14 @@ shareBtn.addEventListener("click", async () => {
 window.addEventListener("DOMContentLoaded", () => {
 
     const topBtn = document.getElementById("topBtn");
-    topBtn.classList.add("show");
 
     if (!topBtn) return;
 
-    window.addEventListener("scroll", () => {
-   console.log("스크롤됨");
-        if (window.scrollY > 50) {
+    topBtn.addEventListener("click", () => {
 
-            topBtn.classList.add("show");
-
-        } else {
-
-            topBtn.classList.remove("show");
-
-        }
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
 
     });
-
-   topBtn.addEventListener("click", () => {
-
-    alert("클릭됨");
-
-});
 
 });
