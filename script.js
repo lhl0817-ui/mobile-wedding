@@ -251,3 +251,60 @@ musicBtn.addEventListener("click", () => {
     }
 
 });
+const fadeElements = document.querySelectorAll(".fade-up");
+
+const observer = new IntersectionObserver((entries) => {
+
+    entries.forEach((entry) => {
+
+        if (entry.isIntersecting) {
+
+            entry.target.classList.add("show");
+
+        }
+
+    });
+
+}, {
+    threshold: 0.2
+});
+
+fadeElements.forEach((el) => {
+    observer.observe(el);
+});
+const shareBtn = document.getElementById("shareBtn");
+
+if (shareBtn) {
+
+    shareBtn.addEventListener("click", async () => {
+
+        const shareData = {
+            title: "이호령 ♥ 편영미 결혼합니다",
+            text: "2026년 10월 10일 토요일 12시\n로터스101",
+            url: "https://lhl0817-ui.github.io/mobile-wedding/"
+        };
+
+        try {
+
+            if (navigator.share) {
+
+                await navigator.share(shareData);
+
+            } else {
+
+                await navigator.clipboard.writeText(
+                    shareData.url
+                );
+
+                alert("청첩장 링크가 복사되었습니다.");
+            }
+
+        } catch (err) {
+
+            console.log(err);
+
+        }
+
+    });
+
+}
