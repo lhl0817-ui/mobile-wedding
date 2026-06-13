@@ -274,37 +274,21 @@ fadeElements.forEach((el) => {
 });
 const shareBtn = document.getElementById("shareBtn");
 
-if (shareBtn) {
+shareBtn.addEventListener("click", async () => {
 
-    shareBtn.addEventListener("click", async () => {
+    const shareData = {
+        title: "이호령 ♥ 편영미 결혼합니다",
+        text: "2026년 10월 10일 토요일 12시\n로터스101",
+        url: "https://lhl0817-ui.github.io/mobile-wedding/"
+    };
 
-        const shareData = {
-            title: "이호령 ♥ 편영미 결혼합니다",
-            text: "2026년 10월 10일 토요일 12시\n로터스101",
-            url: "https://lhl0817-ui.github.io/mobile-wedding/"
-        };
+    try {
 
-        try {
+        await navigator.share(shareData);
 
-            if (navigator.share) {
+    } catch (err) {
 
-                await navigator.share(shareData);
+        alert("이 브라우저에서는 공유창을 지원하지 않습니다.");
+    }
 
-            } else {
-
-                await navigator.clipboard.writeText(
-                    shareData.url
-                );
-
-                alert("청첩장 링크가 복사되었습니다.");
-            }
-
-        } catch (err) {
-
-            console.log(err);
-
-        }
-
-    });
-
-}
+});
