@@ -304,3 +304,37 @@ shareBtn.addEventListener("click", async () => {
     }
 
 });
+window.addEventListener("DOMContentLoaded", () => {
+
+    const topBtn = document.getElementById("topBtn");
+    topBtn.classList.add("show");
+
+    if (!topBtn) return;
+
+    window.addEventListener("scroll", () => {
+   console.log("스크롤됨");
+        if (window.scrollY > 50) {
+
+            topBtn.classList.add("show");
+
+        } else {
+
+            topBtn.classList.remove("show");
+
+        }
+
+    });
+
+    topBtn.addEventListener("click", () => {
+
+        window.scrollTo({
+
+            top: 0,
+
+            behavior: "smooth"
+
+        });
+
+    });
+
+});
