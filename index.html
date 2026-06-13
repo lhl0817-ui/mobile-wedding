@@ -211,6 +211,30 @@
     </button>
 
 </section>
+<section class="guestbook-section">
+
+    <h2>축하의 한마디</h2>
+
+    <div class="guestbook-form">
+
+        <input
+            type="text"
+            id="guestName"
+            placeholder="이름">
+
+        <textarea
+            id="guestMessage"
+            placeholder="축하 메시지를 남겨주세요"></textarea>
+
+        <button id="guestbookBtn">
+            메시지 남기기
+        </button>
+
+    </div>
+
+    <div id="guestbookList"></div>
+
+</section>
 <section class="account-section fade-up">
 
     <h2>마음 전하실 곳</h2>
@@ -341,5 +365,6 @@
 </div>
 <button id="topBtn">⌃</button>
 <script src="script.js"></script>
+<script type="module" src="firebase.js"></script>
 </body>
 </html>
