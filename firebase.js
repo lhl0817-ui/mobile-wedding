@@ -1,3 +1,4 @@
+const ADMIN_PASSWORD = "1010";
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-app.js";
 
 import {
@@ -8,6 +9,8 @@ import {
     query,
     orderBy,
     serverTimestamp
+    deleteDoc,
+doc
 }
 from "https://www.gstatic.com/firebasejs/12.14.0/firebase-firestore.js";
 
@@ -56,7 +59,11 @@ guestbookList.innerHTML += `
         <div class="guestbook-date">
             ${formattedDate}
         </div>
-
+<button
+    class="delete-btn"
+    data-id="${doc.id}">
+    삭제
+</button>
         <div class="guestbook-message">
             ${data.message}
         </div>
@@ -79,6 +86,31 @@ guestbookBtn.addEventListener("click", async () => {
 
         return;
     }
+    if (name.length > 10) {
+
+    alert("이름은 10자 이하로 입력해주세요.");
+
+    return;
+}
+
+if (message.length > 100) {
+
+    alert("메시지는 100자 이하로 입력해주세요.");
+
+    return;
+}
+    const lastWrite =
+    localStorage.getItem("guestbookLastWrite");
+
+if (
+    lastWrite &&
+    Date.now() - Number(lastWrite) < 10000
+) {
+
+    alert("잠시 후 다시 작성해주세요.");
+
+    return;
+}
 
     await addDoc(
         collection(db, "guestbook"),
@@ -93,8 +125,36 @@ guestbookBtn.addEventListener("click", async () => {
     document.getElementById("guestMessage").value = "";
 
     loadGuestbook();
+    document.addEventListener("click", async (e) => {
+
+    if (!e.target.classList.contains("delete-btn"))
+        return;
+
+    const password =
+        prompt("관리자 비밀번호");
+
+    if (password !== "1010") {
+
+        alert("비밀번호가 틀렸습니다.");
+
+        return;
+    }
+
+    const id =
+        e.target.dataset.id;
+
+    await deleteDoc(
+        doc(db, "guestbook", id)
+    );
+
+    loadGuestbook();
+});
 
     alert("축하 메시지가 등록되었습니다 💌");
 });
+localStorage.setItem(
+    "guestbookLastWrite",
+    Date.now()
+);
 
 loadGuestbook();
