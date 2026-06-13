@@ -1,4 +1,5 @@
 const ADMIN_PASSWORD = "1010";
+
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-app.js";
 
 import {
@@ -8,11 +9,10 @@ import {
     getDocs,
     query,
     orderBy,
-    serverTimestamp
+    serverTimestamp,
     deleteDoc,
-doc
-}
-from "https://www.gstatic.com/firebasejs/12.14.0/firebase-firestore.js";
+    doc
+} from "https://www.gstatic.com/firebasejs/12.14.0/firebase-firestore.js";
 
 const firebaseConfig = {
     apiKey: "AIzaSyDvjKzjBm8klCg93Mm1Zcpgaty5jz7cWik",
@@ -40,35 +40,35 @@ async function loadGuestbook() {
 
     const snapshot = await getDocs(q);
 
-    snapshot.forEach((doc) => {
+    snapshot.forEach((docItem) => {
 
-        const data = doc.data();
+        const data = docItem.data();
 
-     const date = data.createdAt?.toDate();
+        const date = data.createdAt?.toDate();
 
-const formattedDate = date
-    ? `${date.getFullYear()}.${String(date.getMonth()+1).padStart(2,'0')}.${String(date.getDate()).padStart(2,'0')}`
-    : '';
+        const formattedDate = date
+            ? `${date.getFullYear()}.${String(date.getMonth()+1).padStart(2,'0')}.${String(date.getDate()).padStart(2,'0')}`
+            : '';
 
-guestbookList.innerHTML += `
-    <div class="guestbook-item">
-        <div class="guestbook-name">
-            ${data.name}
-        </div>
+        guestbookList.innerHTML += `
+            <div class="guestbook-item">
+                <div class="guestbook-name">
+                    ${data.name}
+                </div>
 
-        <div class="guestbook-date">
-            ${formattedDate}
-        </div>
-<button
-    class="delete-btn"
-    data-id="${doc.id}">
-    삭제
-</button>
-        <div class="guestbook-message">
-            ${data.message}
-        </div>
-    </div>
-`;
+                <div class="guestbook-date">
+                    ${formattedDate}
+                </div>
+
+                <button class="delete-btn" data-id="${docItem.id}">
+                    삭제
+                </button>
+
+                <div class="guestbook-message">
+                    ${data.message}
+                </div>
+            </div>
+        `;
     });
 }
 
@@ -81,36 +81,30 @@ guestbookBtn.addEventListener("click", async () => {
         document.getElementById("guestMessage").value.trim();
 
     if (!name || !message) {
-
         alert("이름과 메시지를 입력해주세요.");
-
         return;
     }
+
     if (name.length > 10) {
+        alert("이름은 10자 이하로 입력해주세요.");
+        return;
+    }
 
-    alert("이름은 10자 이하로 입력해주세요.");
+    if (message.length > 100) {
+        alert("메시지는 100자 이하로 입력해주세요.");
+        return;
+    }
 
-    return;
-}
-
-if (message.length > 100) {
-
-    alert("메시지는 100자 이하로 입력해주세요.");
-
-    return;
-}
     const lastWrite =
-    localStorage.getItem("guestbookLastWrite");
+        localStorage.getItem("guestbookLastWrite");
 
-if (
-    lastWrite &&
-    Date.now() - Number(lastWrite) < 10000
-) {
-
-    alert("잠시 후 다시 작성해주세요.");
-
-    return;
-}
+    if (
+        lastWrite &&
+        Date.now() - Number(lastWrite) < 10000
+    ) {
+        alert("잠시 후 다시 작성해주세요.");
+        return;
+    }
 
     await addDoc(
         collection(db, "guestbook"),
@@ -121,10 +115,21 @@ if (
         }
     );
 
+    localStorage.setItem(
+        "guestbookLastWrite",
+        Date.now()
+    );
+
     document.getElementById("guestName").value = "";
     document.getElementById("guestMessage").value = "";
 
-    document.addEventListener("click", async (e) => {
+    await loadGuestbook();
+
+    alert("축하 메시지가 등록되었습니다 💌");
+});
+
+
+document.addEventListener("click", async (e) => {
 
     if (!e.target.classList.contains("delete-btn"))
         return;
@@ -132,10 +137,8 @@ if (
     const password =
         prompt("관리자 비밀번호");
 
-    if (password !== "1010") {
-
+    if (password !== ADMIN_PASSWORD) {
         alert("비밀번호가 틀렸습니다.");
-
         return;
     }
 
@@ -146,14 +149,7 @@ if (
         doc(db, "guestbook", id)
     );
 
-    loadGuestbook();
+    await loadGuestbook();
 });
-
-    alert("축하 메시지가 등록되었습니다 💌");
-});
-localStorage.setItem(
-    "guestbookLastWrite",
-    Date.now()
-);
 
 loadGuestbook();
