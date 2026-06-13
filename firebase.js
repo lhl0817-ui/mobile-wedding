@@ -1,4 +1,4 @@
-const ADMIN_PASSWORD = "1010";
+const ADMIN_PASSWORD = "1003";
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-app.js";
 
