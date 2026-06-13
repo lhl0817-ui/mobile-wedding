@@ -325,16 +325,10 @@ window.addEventListener("DOMContentLoaded", () => {
 
     });
 
-    topBtn.addEventListener("click", () => {
+   topBtn.addEventListener("click", () => {
 
-        window.scrollTo({
+    alert("클릭됨");
 
-            top: 0,
-
-            behavior: "smooth"
-
-        });
-
-    });
+});
 
 });
