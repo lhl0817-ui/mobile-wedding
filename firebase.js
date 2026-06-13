@@ -124,7 +124,6 @@ if (
     document.getElementById("guestName").value = "";
     document.getElementById("guestMessage").value = "";
 
-    loadGuestbook();
     document.addEventListener("click", async (e) => {
 
     if (!e.target.classList.contains("delete-btn"))
