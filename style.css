@@ -435,3 +435,25 @@ html {
 
     line-height: 1.7;
 }
+.guestbook-date {
+
+    font-size: 13px;
+
+    color: #999;
+
+    margin-bottom: 10px;
+}
+.delete-btn {
+
+    float: right;
+
+    border: none;
+
+    background: none;
+
+    color: #999;
+
+    cursor: pointer;
+
+    font-size: 12px;
+}
