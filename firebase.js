@@ -41,16 +41,27 @@ async function loadGuestbook() {
 
         const data = doc.data();
 
-        guestbookList.innerHTML += `
-            <div class="guestbook-item">
-                <div class="guestbook-name">
-                    ${data.name}
-                </div>
-                <div class="guestbook-message">
-                    ${data.message}
-                </div>
-            </div>
-        `;
+     const date = data.createdAt?.toDate();
+
+const formattedDate = date
+    ? `${date.getFullYear()}.${String(date.getMonth()+1).padStart(2,'0')}.${String(date.getDate()).padStart(2,'0')}`
+    : '';
+
+guestbookList.innerHTML += `
+    <div class="guestbook-item">
+        <div class="guestbook-name">
+            ${data.name}
+        </div>
+
+        <div class="guestbook-date">
+            ${formattedDate}
+        </div>
+
+        <div class="guestbook-message">
+            ${data.message}
+        </div>
+    </div>
+`;
     });
 }
 
