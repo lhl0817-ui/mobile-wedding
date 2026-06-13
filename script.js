@@ -284,11 +284,23 @@ shareBtn.addEventListener("click", async () => {
 
     try {
 
-        await navigator.share(shareData);
+        if (navigator.share) {
 
-    } catch (err) {
+            await navigator.share(shareData);
 
-        alert("이 브라우저에서는 공유창을 지원하지 않습니다.");
+        } else {
+
+            throw new Error();
+
+        }
+
+    } catch {
+
+        await navigator.clipboard.writeText(
+            shareData.url
+        );
+
+        alert("청첩장 링크가 복사되었습니다.\n카카오톡 대화창에 붙여넣어 공유해주세요.");
     }
 
 });
