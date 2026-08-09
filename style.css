@@ -510,3 +510,15 @@ color: #777;
     opacity: 1;
     transform: translateY(0);
 }
+.date-card-animate {
+    transform: scale(0.92);
+    opacity: 0;
+    transition:
+        transform 0.8s ease,
+        opacity 0.8s ease;
+}
+
+.date-card-animate.show-card {
+    transform: scale(1);
+    opacity: 1;
+}

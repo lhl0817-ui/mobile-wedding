@@ -272,6 +272,30 @@ const observer = new IntersectionObserver((entries) => {
 fadeElements.forEach((el) => {
     observer.observe(el);
 });
+const dateCard = document.querySelector(".date-card-animate");
+
+if (dateCard) {
+
+    const dateCardObserver = new IntersectionObserver((entries) => {
+
+        entries.forEach((entry) => {
+
+            if (entry.isIntersecting) {
+
+                entry.target.classList.add("show-card");
+
+                dateCardObserver.unobserve(entry.target);
+
+            }
+
+        });
+
+    }, {
+        threshold: 0.4
+    });
+
+    dateCardObserver.observe(dateCard);
+}
 const galleryImgs = document.querySelectorAll(".gallery-grid img");
 
 const galleryObserver = new IntersectionObserver((entries) => {
