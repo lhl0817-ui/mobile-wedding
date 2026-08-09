@@ -272,6 +272,35 @@ const observer = new IntersectionObserver((entries) => {
 fadeElements.forEach((el) => {
     observer.observe(el);
 });
+const galleryImgs = document.querySelectorAll(".gallery-grid img");
+
+const galleryObserver = new IntersectionObserver((entries) => {
+
+    entries.forEach((entry) => {
+
+        if (entry.isIntersecting) {
+
+            const index =
+                Array.from(galleryImgs).indexOf(entry.target);
+
+            setTimeout(() => {
+
+                entry.target.classList.add("show");
+
+            }, index * 70);
+
+            galleryObserver.unobserve(entry.target);
+        }
+
+    });
+
+}, {
+    threshold: 0.2
+});
+
+galleryImgs.forEach((img) => {
+    galleryObserver.observe(img);
+});
 const shareBtn = document.getElementById("shareBtn");
 
 shareBtn.addEventListener("click", async () => {
