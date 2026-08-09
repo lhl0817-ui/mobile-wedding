@@ -349,111 +349,152 @@ html {
     scroll-behavior: smooth;
 }
 .guestbook-section {
-
-    padding: 80px 20px;
-
-    background: #faf7f5;
-
-    text-align: center;
+padding: 80px 20px;
+background: #faf7f5;
+text-align: center;
 }
 
+.guestbook-section h2 {
+margin-bottom: 35px;
+}
+
+/* 방명록 입력 영역 */
 .guestbook-form {
-
-    max-width: 500px;
-
-    margin: 0 auto 40px;
+max-width: 500px;
+margin: 0 auto 45px;
 }
 
 .guestbook-form input,
 .guestbook-form textarea {
+width: 100%;
+padding: 14px 16px;
+margin-bottom: 12px;
 
-    width: 100%;
+border: 1px solid #e2ddd9;
+border-radius: 12px;
 
-    padding: 15px;
+background: rgba(255,255,255,0.9);
 
-    margin-bottom: 15px;
+font-family: 'Noto Serif KR', serif;
+font-size: 15px;
+color: #444;
 
-    border: 1px solid #ddd;
+outline: none;
 
-    border-radius: 12px;
+}
 
-    font-size: 16px;
+.guestbook-form input,
+.guestbook-form textarea {
+border-color: #b8a49a;
 }
 
 .guestbook-form textarea {
-
-    height: 120px;
-
-    resize: none;
+height: 110px;
+resize: none;
 }
 
 .guestbook-form button {
+width: 100%;
+padding: 14px;
 
-    width: 100%;
+border: none;
+border-radius: 12px;
 
-    padding: 15px;
+background: #8b756b;
+color: white;
 
-    border: none;
+font-family: 'Noto Serif KR', serif;
+font-size: 15px;
 
-    border-radius: 12px;
+cursor: pointer;
 
-    background: #8b6f62;
+transition: opacity 0.2s ease,
+            transform 0.2s ease;
 
-    color: white;
-
-    font-size: 16px;
-
-    cursor: pointer;
 }
 
+.guestbook-form button {
+opacity: 0.9;
+transform: translateY(-1px);
+}
+
+/* 방명록 목록 */
+#guestbookList {
+max-width: 500px;
+margin: 0 auto;
+}
+
+/* 댓글 하나 */
 .guestbook-item {
+position: relative;
 
-    max-width: 500px;
+margin-bottom: 14px;
+padding: 20px 22px;
 
-    margin: 0 auto 15px;
+background: rgba(255,255,255,0.9);
 
-    padding: 20px;
+border: 1px solid #eee7e2;
+border-radius: 16px;
 
-    background: white;
+text-align: left;
 
-    border-radius: 15px;
+box-shadow: 0 3px 12px rgba(0,0,0,0.04);
 
-    text-align: left;
-
-    box-shadow:
-        0 2px 10px rgba(0,0,0,0.05);
 }
 
+/* 이름 */
 .guestbook-name {
+display: inline-block;
 
-    font-weight: bold;
+font-size: 15px;
+font-weight: 600;
 
-    margin-bottom: 8px;
+color: #5d514b;
+
 }
 
-.guestbook-message {
-
-    line-height: 1.7;
-}
+/* 날짜 */
 .guestbook-date {
+display: inline-block;
 
-    font-size: 13px;
+margin-left: 8px;
 
-    color: #999;
+font-size: 12px;
+color: #aaa;
 
-    margin-bottom: 10px;
 }
+
+/* 메시지 */
+.guestbook-message {
+margin-top: 10px;
+
+font-size: 15px;
+line-height: 1.7;
+
+color: #555;
+
+white-space: pre-wrap;
+
+}
+
+/* 삭제 버튼 */
 .delete-btn {
+float: right;
 
-    float: right;
+padding: 2px 5px;
 
-    border: none;
+border: none;
+background: transparent;
 
-    background: none;
+color: #aaa;
 
-    color: #999;
+font-family: 'Noto Serif KR', serif;
+font-size: 11px;
 
-    cursor: pointer;
+cursor: pointer;
 
-    font-size: 12px;
+}
+
+.delete-btn {
+color: #777;
 }
