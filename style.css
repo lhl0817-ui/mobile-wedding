@@ -11,6 +11,7 @@ body {
     line-height: 1.8;
     position: relative;
     overflow-x: hidden;
+    background: #faf7f5;
 }
 
 section {
