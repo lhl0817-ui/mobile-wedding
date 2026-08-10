@@ -51,24 +51,17 @@ async function loadGuestbook() {
             : '';
 
         guestbookList.innerHTML += `
-            <div class="guestbook-item">
-                <div class="guestbook-name">
-                    ${data.name}
-                </div>
+    <div class="guestbook-item">
+        <div class="guestbook-name">${data.name}</div>
+        <div class="guestbook-date">${formattedDate}</div>
 
-                <div class="guestbook-date">
-                    ${formattedDate}
-                </div>
+        <button class="delete-btn" data-id="${docItem.id}">
+            삭제
+        </button>
 
-                <button class="delete-btn" data-id="${docItem.id}">
-                    삭제
-                </button>
-
-                <div class="guestbook-message">
-                    ${data.message}
-                </div>
-            </div>
-        `;
+        <div class="guestbook-message">${data.message}</div>
+    </div>
+`;
     });
 }
 
