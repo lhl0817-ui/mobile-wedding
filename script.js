@@ -48,6 +48,12 @@ galleryImages.forEach((img,index)=>{
 
         lightbox.style.display = "flex";
 
+        history.pushState(
+            { lightbox: true },
+            "",
+            "#photo"
+        );
+
     });
 
 });
@@ -83,7 +89,21 @@ prevBtn.addEventListener("click",()=>{
 
 closeBtn.addEventListener("click",()=>{
 
-    lightbox.style.display = "none";
+    if (lightbox.style.display === "flex") {
+
+        history.back();
+
+    }
+
+});
+// 모바일 뒤로가기 버튼으로 팝업 닫기
+window.addEventListener("popstate", () => {
+
+    if (lightbox.style.display === "flex") {
+
+        lightbox.style.display = "none";
+
+    }
 
 });
 let touchStartX = 0;
