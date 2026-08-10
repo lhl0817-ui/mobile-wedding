@@ -522,3 +522,30 @@ color: #777;
     transform: scale(1);
     opacity: 1;
 }
+.calendar-image {
+    max-width: 360px;
+    margin: 0 auto 30px;
+}
+
+.calendar-image img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.wedding-detail {
+    text-align: center;
+}
+
+.wedding-detail p {
+    margin-bottom: 8px;
+    font-size: 17px;
+    color: #555;
+}
+#lightbox-img {
+    transition: opacity 0.15s ease;
+}
+
+#lightbox-img.photo-changing {
+    opacity: 0;
+}

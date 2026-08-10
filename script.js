@@ -23,11 +23,19 @@ let currentIndex = 0;
 
 function showImage(index){
 
-    lightboxImg.src =
-    galleryImages[index].src;
+    lightboxImg.classList.add("photo-changing");
 
-    counter.textContent =
-    `${index + 1} / ${galleryImages.length}`;
+    setTimeout(() => {
+
+        lightboxImg.src =
+        galleryImages[index].src;
+
+        counter.textContent =
+        `${index + 1} / ${galleryImages.length}`;
+
+        lightboxImg.classList.remove("photo-changing");
+
+    }, 150);
 }
 
 galleryImages.forEach((img,index)=>{
@@ -79,63 +87,82 @@ closeBtn.addEventListener("click",()=>{
 
 });
 let touchStartX = 0;
-let touchEndX = 0;
+let touchStartY = 0;
+let isMultiTouch = false;
 
 lightbox.addEventListener("touchstart", (e) => {
 
-    touchStartX =
-    e.changedTouches[0].screenX;
+    if (e.touches.length > 1) {
+        isMultiTouch = true;
+        return;
+    }
+
+    isMultiTouch = false;
+
+    touchStartX = e.changedTouches[0].screenX;
+    touchStartY = e.changedTouches[0].screenY;
+
+});
+
+lightbox.addEventListener("touchmove", (e) => {
+
+    if (e.touches.length > 1) {
+        isMultiTouch = true;
+    }
 
 });
 
 lightbox.addEventListener("touchend", (e) => {
 
-    touchEndX =
-    e.changedTouches[0].screenX;
+    if (isMultiTouch) {
+        return;
+    }
 
-    handleSwipe();
+    const touchEndX = e.changedTouches[0].screenX;
+    const touchEndY = e.changedTouches[0].screenY;
+
+    const swipeDistanceX =
+        touchEndX - touchStartX;
+
+    const swipeDistanceY =
+        touchEndY - touchStartY;
+
+    /*
+     * 좌우 움직임이 위아래 움직임보다 확실히 클 때만
+     * 사진 넘기기로 인식
+     */
+    if (
+        Math.abs(swipeDistanceX) > 70 &&
+        Math.abs(swipeDistanceX) > Math.abs(swipeDistanceY) * 1.3
+    ) {
+
+        if (swipeDistanceX > 0) {
+
+            currentIndex--;
+
+            if (currentIndex < 0) {
+                currentIndex =
+                    galleryImages.length - 1;
+            }
+
+        } else {
+
+            currentIndex++;
+
+            if (currentIndex >= galleryImages.length) {
+                currentIndex = 0;
+            }
+
+        }
+
+        showImage(currentIndex);
+    }
 
 });
-
-function handleSwipe(){
-
-    const swipeDistance =
-    touchEndX - touchStartX;
-
-    if(swipeDistance > 50){
-
-        currentIndex--;
-
-        if(currentIndex < 0){
-
-            currentIndex =
-            galleryImages.length - 1;
-
-        }
-
-        showImage(currentIndex);
-
-    }
-
-    if(swipeDistance < -50){
-
-        currentIndex++;
-
-        if(currentIndex >= galleryImages.length){
-
-            currentIndex = 0;
-
-        }
-
-        showImage(currentIndex);
-
-    }
-
-}
 function copyAccount(id){
 
     const text =
-    document.getElementById(id).textContent;
+    document.getElementById(id).textContent.trim();
 
     navigator.clipboard.writeText(text);
 
