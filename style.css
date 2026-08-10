@@ -293,6 +293,7 @@ html, body {
     cursor: pointer;
 
     background: #8b756b;
+    color: white;
 }
 .date-divider {
     width: 60%;
